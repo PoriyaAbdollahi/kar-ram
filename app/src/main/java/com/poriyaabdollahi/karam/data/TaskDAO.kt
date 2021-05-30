@@ -1,7 +1,7 @@
 package com.poriyaabdollahi.karam.data
 
 import androidx.room.*
-import com.poriyaabdollahi.karam.ui.tasks.SortOrder
+
 import kotlinx.coroutines.flow.Flow
 
 @Dao
