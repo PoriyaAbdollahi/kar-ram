@@ -11,7 +11,7 @@ import com.poriyaabdollahi.karam.databinding.ItemTaskBinding
 
 import kotlin.coroutines.coroutineContext
 
-class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback()){
+class TaskAdapter (private val listener:onItemClickListener): ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback()){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TaskViewHolder(binding)
@@ -22,8 +22,27 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback(
         holder.bind(currentItem)
     }
 
-    class TaskViewHolder(private val binding: ItemTaskBinding) :
+ inner   class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.apply {
+                root.setOnClickListener{
+                    val  position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION){
+                        val task = getItem(position)
+                        listener.onItemClicked(task)
+                    }
+                }
+                checkboxCompleted.setOnClickListener{
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION){
+                        val task = getItem(position)
+                        listener.onCheckBoxClicked(task,checkboxCompleted.isChecked)
+                    }
+                }
+
+            }
+        }
         fun bind(task: Task) {
             binding.apply {
                 checkboxCompleted.isChecked = task.completed
@@ -33,7 +52,10 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback(
             }
         }
     }
-
+    interface onItemClickListener{
+        fun onItemClicked(task :Task)
+        fun onCheckBoxClicked(task :Task,isChecked : Boolean)
+    }
     class DiffCallback : DiffUtil.ItemCallback<Task>(){
         override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean =
             oldItem.id == newItem.id
