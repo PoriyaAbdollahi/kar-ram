@@ -8,6 +8,23 @@
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.poriyaabdollahi.karam.ui.tasks.TaskFragment"
-        android:label="fragment_task"
-        tools:layout="@layout/fragment_task" />
+        android:label="Tasks"
+        tools:layout="@layout/fragment_task">
+        <action
+            android:id="@+id/action_taskFragment_to_addEditTaskFragment2"
+            app:destination="@id/addEditTaskFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditTaskFragment2"
+        android:name="com.poriyaabdollahi.karam.ui.addedittask.AddEditTaskFragment"
+        android:label="{title}" >
+        <argument
+            android:name="task"
+            app:argType="com.poriyaabdollahi.karam.data.Task"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 </navigation>

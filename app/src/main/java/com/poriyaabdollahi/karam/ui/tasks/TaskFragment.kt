@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +21,7 @@ import com.poriyaabdollahi.karam.data.SortOrder
 import com.poriyaabdollahi.karam.data.Task
 import com.poriyaabdollahi.karam.databinding.FragmentTaskBinding
 import com.poriyaabdollahi.karam.databinding.ItemTaskBinding
+import com.poriyaabdollahi.karam.util.exchaustive
 import com.poriyaabdollahi.karam.util.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -55,6 +58,9 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
                     viewModel.taskSwiped(task)
                 }
             }).attachToRecyclerView(recyclerViewTasks)
+            fabAddTask.setOnClickListener{
+                viewModel.onAddNewTaskClicked()
+            }
         }
 
         viewModel.tasks.observe(viewLifecycleOwner) {
@@ -69,7 +75,15 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
                                 viewModel.onUndoDeleteClick(event.task)
                             }.show()
                     }
-                }
+                    is TaskViewModel.TaskEvent.NavigateToAddTaskScreen -> {
+                   val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(null,"New Task")
+                        findNavController().navigate(action)
+                    }
+                    is TaskViewModel.TaskEvent.NavigateToEditTaskScreen -> {
+                        val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(event.task,"Edit Task")
+                        findNavController().navigate(action)
+                    }
+                }.exchaustive
             }
         }
         setHasOptionsMenu(true)
