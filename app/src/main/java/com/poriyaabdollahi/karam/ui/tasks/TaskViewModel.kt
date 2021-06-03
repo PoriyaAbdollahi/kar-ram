@@ -7,6 +7,8 @@ import com.poriyaabdollahi.karam.data.PreferencesManager
 import com.poriyaabdollahi.karam.data.SortOrder
 import com.poriyaabdollahi.karam.data.Task
 import com.poriyaabdollahi.karam.data.TaskDAO
+import com.poriyaabdollahi.karam.ui.ADD_TASK_RESULT_OK
+import com.poriyaabdollahi.karam.ui.EDIT_TASK_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.Channel
@@ -60,10 +62,23 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
     fun onAddNewTaskClicked() = viewModelScope.launch{
     tasksEventChannel.send(TaskEvent.NavigateToAddTaskScreen)
     }
+
+    fun onAddEditResult(result: Int) {
+        when (result) {
+            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("task Added")
+            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("task updated")
+        }
+
+    }
+
+    private fun showTaskSavedConfirmationMessage(text: String) = viewModelScope.launch {
+        tasksEventChannel.send(TaskEvent.ShowTaskSavedConfirmationMessage(text))
+    }
+
     sealed class TaskEvent{
         object NavigateToAddTaskScreen : TaskEvent()
         data class NavigateToEditTaskScreen(val task : Task) : TaskEvent()
         data class showOnDeleteTaskMessage(val task: Task):TaskEvent()
-
+        data class ShowTaskSavedConfirmationMessage(val msg:String) :TaskEvent()
     }
 }
