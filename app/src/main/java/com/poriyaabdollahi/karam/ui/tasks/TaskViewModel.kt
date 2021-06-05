@@ -65,8 +65,8 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
 
     fun onAddEditResult(result: Int) {
         when (result) {
-            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("task Added")
-            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("task updated")
+            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("کار اضافه شد")
+            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("کار بروزرسانی شد")
         }
 
     }

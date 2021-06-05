@@ -3,9 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_light"
+
+    android:layout_gravity="end"
     tools:context="ui.addedittask.AddEditTaskFragment">
 
     <LinearLayout
+        android:layout_margin="8dp"
+        android:background="@drawable/task_back_shape"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -15,19 +22,32 @@
             android:id="@+id/edit_text_task_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Task Name"
+            android:textSize="20sp"
+            android:textColor="@color/white_new"
+            android:textColorHint="@color/white_light"
+            android:hint="عنوان کار"
             android:inputType="text" />
-
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <CheckBox
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:text="مهم"
+            android:textSize="20sp"
             android:id="@+id/checkbox_important"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Important" />
+            android:layout_width="wrap_content"
+            android:textColor="@color/white_new"
+            android:layout_height="wrap_content" />
 
+    </LinearLayout>
         <TextView
             android:id="@+id/text_view_date_created"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             tools:text="Date Created:" />
     </LinearLayout>
 
@@ -37,6 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:tint="@android:color/white"
+        app:tint="@android:color/white"
         android:src="@drawable/ic_check"
         android:contentDescription="checkTask" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

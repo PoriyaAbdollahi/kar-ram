@@ -22,10 +22,10 @@ abstract class TaskDatabase : RoomDatabase() {
             //this will happen after build method on AppModule
                 val dao =  database.get().taskDao()
             applicationScope.launch {
-                dao.insert(Task("wash  the dishes "))
-                dao.insert(Task("take bath"))
-                dao.insert(Task("go for study ",completed = true))
-                dao.insert(Task("wash  shoshol ",true))
+                dao.insert(Task("کار های خانه رو انجام بدم"))
+                dao.insert(Task("حموم برم"))
+                dao.insert(Task("ریاضی بخوانم",completed = true))
+                dao.insert(Task("ماشین رو بشورم",true))
             }
         }
     }

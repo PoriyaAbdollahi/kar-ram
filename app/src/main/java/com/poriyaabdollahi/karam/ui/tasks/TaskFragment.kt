@@ -75,17 +75,17 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
             viewModel.taskEvent.collect { event ->
                 when(event){
                     is TaskViewModel.TaskEvent.showOnDeleteTaskMessage ->{
-                        Snackbar.make(requireView(),"Task Deleted",Snackbar.LENGTH_LONG)
+                        Snackbar.make(requireView(),"کار پاک شد",Snackbar.LENGTH_LONG)
                             .setAction("UNDO"){
                                 viewModel.onUndoDeleteClick(event.task)
                             }.show()
                     }
                     is TaskViewModel.TaskEvent.NavigateToAddTaskScreen -> {
-                   val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(null,"New Task")
+                   val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(null,"اضافه کردن کار")
                         findNavController().navigate(action)
                     }
                     is TaskViewModel.TaskEvent.NavigateToEditTaskScreen -> {
-                        val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(event.task,"Edit Task")
+                        val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(event.task,"ویرایش کار")
                         findNavController().navigate(action)
                     }
                     is TaskViewModel.TaskEvent.ShowTaskSavedConfirmationMessage -> {

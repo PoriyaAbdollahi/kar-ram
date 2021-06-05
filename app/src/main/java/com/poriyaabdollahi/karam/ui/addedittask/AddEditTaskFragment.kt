@@ -30,7 +30,7 @@ private val viewModel : AddEditTaskViewModel by viewModels()
             checkboxImportant.isChecked = viewModel.taskImportance
             checkboxImportant.jumpDrawablesToCurrentState()
             textViewDateCreated.isVisible = viewModel.task != null
-            textViewDateCreated. text ="Created : ${viewModel.task?.createdDateFormatted}"
+            textViewDateCreated. text ="${viewModel.task?.createdDateFormatted}: ساخته شده در تاریخ "
 
             editTextTaskName.addTextChangedListener{
                 viewModel.taskName = it.toString()

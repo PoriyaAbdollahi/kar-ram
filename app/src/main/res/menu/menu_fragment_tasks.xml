@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:id="@+id/action_search"
     android:icon="@drawable/ic_search"
-    android:title="search"
+    android:title="جستوجو"
     app:actionViewClass="androidx.appcompat.widget.SearchView"
     app:showAsAction="always|collapseActionView"/>
 <item
     android:icon="@drawable/ic_sort"
-    android:title="Sort"
+    android:title="مرتب سازی"
     app:showAsAction="always">
     <menu>
         <item
             android:id="@+id/action_sort_by_name"
-            android:title="sort by name"/>
+            android:title="مرتب سازی بر اساس اسم"/>
         <item
             android:id="@+id/action_sort_by_date"
-            android:title="sort by date"/>
+            android:title="مرتب سازی بر اساس تاریخ"/>
     </menu>
 </item>
     <item android:id="@+id/action_hide_completed_task"
           android:checkable="true"
-        android:title="Hide Completed"
+        android:title="پنهان کردن کار های انجام شده"
+
         app:showAsAction="never"/>
     <item
+
         android:id="@+id/action_delete_all_completed_task"
-        android:title="Delete All Completed"
+        android:title="پاک کردن تمام کار های انجام شده"
         app:showAsAction="never"/>
 </menu>

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.poriyaabdollahi.karam.ui.tasks.TaskFragment"
-        android:label="Tasks"
+        android:label="کارام"
         tools:layout="@layout/fragment_task">
         <action
             android:id="@+id/action_taskFragment_to_addEditTaskFragment2"
