@@ -76,7 +76,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
                 when(event){
                     is TaskViewModel.TaskEvent.showOnDeleteTaskMessage ->{
                         Snackbar.make(requireView(),"کار پاک شد",Snackbar.LENGTH_LONG)
-                            .setAction("UNDO"){
+                            .setAction("لغو"){
                                 viewModel.onUndoDeleteClick(event.task)
                             }.show()
                     }

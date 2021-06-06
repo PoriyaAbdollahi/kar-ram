@@ -18,7 +18,14 @@
         <item name="android:itemTextAppearance">@color/white_new</item>
         <item name="android:actionMenuTextColor">@color/white_new</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="fontFamily">@font/yekan</item>
 
+    </style>
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/blue_light</item>
+        <item name="android:textColor">@color/white_new</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColorPrimary">@color/white_new</item>
     </style>
 
 </resources>

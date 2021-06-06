@@ -17,6 +17,7 @@
         android:layout_alignParentRight="true" />
 
     <TextView
+        android:fontFamily="@font/yekan"
         android:id="@+id/text_name_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
