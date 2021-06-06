@@ -1,5 +1,6 @@
 package com.poriyaabdollahi.karam.ui.tasks
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -29,6 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.concurrent.schedule
 
 @AndroidEntryPoint
 class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickListener{
@@ -61,7 +64,16 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
                 }
             }).attachToRecyclerView(recyclerViewTasks)
             fabAddTask.setOnClickListener{
-                viewModel.onAddNewTaskClicked()
+                ObjectAnimator.ofFloat(fabAddTask, "translationX", 100f).apply {
+                    duration = 500
+
+                    start()
+                    Timer("SettingUp2", false).schedule(500) {
+                       viewModel.onAddNewTaskClicked()
+                    }
+
+                }
+
             }
         }
         setFragmentResultListener("add_edit_request"){
@@ -81,6 +93,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) ,TaskAdapter.onItemClickLi
                             }.show()
                     }
                     is TaskViewModel.TaskEvent.NavigateToAddTaskScreen -> {
+
                    val action = TaskFragmentDirections.actionTaskFragmentToAddEditTaskFragment2(null,"اضافه کردن کار")
                         findNavController().navigate(action)
                     }

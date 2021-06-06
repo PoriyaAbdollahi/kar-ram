@@ -1,5 +1,6 @@
 package com.poriyaabdollahi.karam.ui.addedittask
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -17,6 +18,9 @@ import com.poriyaabdollahi.karam.databinding.FragmentAddEditTaskBinding
 import com.poriyaabdollahi.karam.util.exchaustive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.util.*
+import kotlin.concurrent.schedule
+import kotlin.concurrent.timerTask
 
 @AndroidEntryPoint
 class AddEditTaskFragment : Fragment(R.layout.fragment_add_edit_task) {
@@ -52,7 +56,17 @@ class AddEditTaskFragment : Fragment(R.layout.fragment_add_edit_task) {
                 viewModel.taskImportance = isChecked
             }
             fabSaveTask.setOnClickListener {
-                viewModel.onSavedClick()
+
+                ObjectAnimator.ofFloat(fabSaveTask, "translationX", -100f).apply {
+                    duration = 500
+
+                    if(viewModel.taskName.isNotBlank())start()
+                    Timer("SettingUp", false).schedule(500) {
+                      viewModel.onSavedClick()
+                    }
+
+                }
+
             }
 
             viewLifecycleOwner.lifecycleScope.launchWhenCreated {
