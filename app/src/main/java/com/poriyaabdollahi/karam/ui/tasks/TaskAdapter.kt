@@ -1,11 +1,15 @@
 package com.poriyaabdollahi.karam.ui.tasks
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.poriyaabdollahi.karam.R
 import com.poriyaabdollahi.karam.data.Task
 import com.poriyaabdollahi.karam.databinding.ItemTaskBinding
 
@@ -13,6 +17,7 @@ import kotlin.coroutines.coroutineContext
 
 class TaskAdapter (private val listener:onItemClickListener): ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback()){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+
         val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TaskViewHolder(binding)
     }
@@ -49,6 +54,20 @@ class TaskAdapter (private val listener:onItemClickListener): ListAdapter<Task, 
                 textNameView.text = task.name
                 textNameView.paint.isStrikeThruText = task.completed
                 labelPriority.isVisible = task.important
+
+                when (task.color) {
+
+                    "black_light" -> taskItem.setBackgroundResource(R.drawable.task_back_black_light)
+                    "pallet_violet" -> taskItem.setBackgroundResource(R.drawable.task_back_pallet_violet)
+                    "caroline_blue" -> taskItem.setBackgroundResource(R.drawable.task_back_caroline_blue)
+                    "pallet_sea_green" -> taskItem.setBackgroundResource(R.drawable.task_back_pallet_sea_green)
+                    "pallet_saffron_yellow" -> taskItem.setBackgroundResource(R.drawable.task_back_pallet_saffron_yellow)
+                    "indian_red" -> taskItem.setBackgroundResource(R.drawable.task_back_indian_red)
+                    "dark_green" -> taskItem.setBackgroundResource(R.drawable.task_back_dark_green)
+                    "violet" -> taskItem.setBackgroundResource(R.drawable.task_back_violet)
+                    "green_white" -> taskItem.setBackgroundResource(R.drawable.task_back_green_white)
+                    "dark_pink" -> taskItem.setBackgroundResource(R.drawable.task_back_dark_pink)
+                }
             }
         }
     }

@@ -26,19 +26,25 @@ class AddEditTaskViewModel @Inject constructor(private val state : SavedStateHan
             field = value
             state.set("taskImportance",value)
         }
+    //
+    var taskColor = state.get<String>("taskColor")?: task?.color ?:"caroline_blue"
+        set(value) {
+            field = value
+            state.set("taskColor",value)
+        }
     private  val  addEditTaskEventChannel =Channel<AddEditTaskEvent>()
     val addEditTaskEvent =addEditTaskEventChannel.receiveAsFlow()
     fun onSavedClick(){
         if (taskName.isBlank()) {
-        showInvalidInputMessage("Name Cannot Be Empty")
+        showInvalidInputMessage("عنوان کار خالی است")
             return
 
         }
         if (task != null) {
-            val updatedTask =task.copy(name = taskName,important = taskImportance)
+            val updatedTask =task.copy(name = taskName,important = taskImportance,color = taskColor)
             updateTask(updatedTask)
         }else{
-            val newTask = Task(name =  taskName , important = taskImportance)
+            val newTask = Task(name =  taskName , important = taskImportance,color = taskColor)
             createTask(newTask)
         }
 

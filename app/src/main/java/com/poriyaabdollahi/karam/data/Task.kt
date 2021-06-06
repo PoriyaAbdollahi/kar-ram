@@ -12,6 +12,7 @@ data class Task(
     val name: String,
     val important: Boolean = false,
     val completed: Boolean = false,
+    val color:String ="caroline_blue",
     val created: Long = System.currentTimeMillis(),
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) : Parcelable {

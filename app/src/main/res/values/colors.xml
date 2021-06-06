@@ -11,6 +11,19 @@
     <color name="green_light">#1eae98</color>
     <color name="blue_light">#233e8b</color>
     <color name="white_light">#8F8F8F</color>
+    <color name="pallet_violet">#7768AE</color>
+    <color name="pallet_sea_green">#3bb273</color>
+    <color name="pallet_saffron_yellow">#e1bc29</color>
+    <color name="indian_red">#e15554</color>
+    <color name="caroline_blue">#4d9de0</color>
+    <color name="pink">#de369d</color>
+    <color name="black_light">#1d201f</color>
+    <color name="dark_green">#036d19</color>
+    <color name="violet">#20063b</color>
+    <color name="green_white">#c2f9bb</color>
+    <color name="dark_pink">#cc3363</color>
+
+
 
 
 </resources>

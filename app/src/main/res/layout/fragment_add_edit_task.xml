@@ -29,6 +29,7 @@
             android:hint="عنوان کار"
             android:inputType="text" />
     <LinearLayout
+
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -43,6 +44,107 @@
             android:layout_width="wrap_content"
             android:textColor="@color/white_new"
             android:layout_height="wrap_content" />
+        <TextView
+            android:text="رنگ رو انتخاب کنید"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <GridLayout
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/black_light"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/black_light"/>
+            <ImageView
+                android:id="@+id/pallet_violet"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/pallet_violet"/>
+            <ImageView
+                android:id="@+id/caroline_blue"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/caroline_blue"/>
+            <ImageView
+                android:id="@+id/sea_green"
+                android:layout_column="3"
+                android:layout_row="0"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/pallet_sea_green"/>
+            <ImageView
+                android:id="@+id/saffron_yellow"
+                android:layout_column="5"
+                android:layout_row="0"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/pallet_saffron_yellow"/>
+            <ImageView
+                android:id="@+id/indian_red"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/indian_red"/>
+            <ImageView
+                android:id="@+id/dark_green"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/dark_green"/>
+            <ImageView
+                android:id="@+id/violet"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/violet"/>
+            <ImageView
+                android:id="@+id/green_white"
+                android:layout_column="3"
+                android:layout_row="1"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/green_white"/>
+
+            <ImageView
+                android:id="@+id/dark_pink"
+                android:layout_column="5"
+                android:layout_row="1"
+                android:layout_margin="4dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/dark_pink"/>
+        </GridLayout>
+        <ImageView
+            android:id="@+id/chosen_color"
+            android:layout_gravity="center"
+            android:layout_column="5"
+            android:layout_row="1"
+            android:layout_margin="4dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
 
     </LinearLayout>
         <TextView
@@ -51,6 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             tools:text="Date Created:" />
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
