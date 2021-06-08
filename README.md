@@ -2,9 +2,11 @@
 ## TODOAPP
 This project takes advantage of best practices,
  many popular libraries and tools in the Android ecosystem.
- 
+
  Most of the libraries are in the stable version unless
  there is a good reason to use non-stable dependency.
+
+ ![alt text](https://github.com/PoriyaAbdollahi/kar-ram/blob/master/projectpreview/preview.gif "Logo Title Text 1")
 
 ### Tech-stack
 100% Kotlin + Coroutines - perform background operations.
