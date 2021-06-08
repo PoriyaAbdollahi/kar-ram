@@ -1,8 +1,5 @@
 package com.poriyaabdollahi.karam.ui.tasks
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -13,9 +10,7 @@ import com.poriyaabdollahi.karam.R
 import com.poriyaabdollahi.karam.data.Task
 import com.poriyaabdollahi.karam.databinding.ItemTaskBinding
 
-import kotlin.coroutines.coroutineContext
-
-class TaskAdapter (private val listener:onItemClickListener): ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback()){
+class TaskAdapter (private val listener:OnItemClickListener): ListAdapter<Task, TaskAdapter.TaskViewHolder> (DiffCallback()){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
 
         val binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -71,7 +66,7 @@ class TaskAdapter (private val listener:onItemClickListener): ListAdapter<Task, 
             }
         }
     }
-    interface onItemClickListener{
+    interface OnItemClickListener{
         fun onItemClicked(task :Task)
         fun onCheckBoxClicked(task :Task,isChecked : Boolean)
     }

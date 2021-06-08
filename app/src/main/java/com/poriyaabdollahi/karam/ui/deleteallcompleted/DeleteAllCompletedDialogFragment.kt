@@ -1,6 +1,6 @@
 package com.poriyaabdollahi.karam.ui.deleteallcompleted
 
-import android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
+
 import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog

@@ -1,21 +1,13 @@
 package com.poriyaabdollahi.karam.ui.tasks
 
 
-import android.content.Context
 import androidx.lifecycle.*
-import com.poriyaabdollahi.karam.data.PreferencesManager
-import com.poriyaabdollahi.karam.data.SortOrder
-import com.poriyaabdollahi.karam.data.Task
-import com.poriyaabdollahi.karam.data.TaskDAO
+import com.poriyaabdollahi.karam.data.*
 import com.poriyaabdollahi.karam.ui.ADD_TASK_RESULT_OK
 import com.poriyaabdollahi.karam.ui.EDIT_TASK_RESULT_OK
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +15,7 @@ import javax.inject.Inject
 class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  val preferencesManager : PreferencesManager,private val state : SavedStateHandle):ViewModel() {
     val searchQuery = state.getLiveData("searchQuery","")
      val  preferenceFlow = preferencesManager.preferenceFlow
+
   private  val  tasksEventChannel = Channel<TaskEvent>()
     val taskEvent = tasksEventChannel.receiveAsFlow()
 
@@ -33,9 +26,11 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
     {query,filterPreferences ->
         Pair(query,filterPreferences)
 
-    }.flatMapLatest {(query,filterPreferences)->
+    }.flatMapLatest { (query,filterPreferences)->
         taskDao.getAllTasks(query,filterPreferences.sortOrder,filterPreferences.hideCompleted)
+
     }
+
     val tasks =taskFlow.asLiveData()
 
     fun onSortOrderSelected(sortOrder:SortOrder) = viewModelScope.launch {
@@ -54,7 +49,7 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
 
     fun taskSwiped(task: Task) = viewModelScope.launch {
         taskDao.delete(task)
-        tasksEventChannel.send(TaskEvent.showOnDeleteTaskMessage(task))
+        tasksEventChannel.send(TaskEvent.ShowOnDeleteTaskMessage(task))
     }
     fun onUndoDeleteClick(task: Task) = viewModelScope.launch {
         taskDao.insert(task)
@@ -62,7 +57,12 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
     fun onAddNewTaskClicked() = viewModelScope.launch{
     tasksEventChannel.send(TaskEvent.NavigateToAddTaskScreen)
     }
-
+    fun onShowCaseDone(){
+        preferencesManager.writeUpdateShowCase()
+    }
+    fun readShowCase(): Boolean{
+      return  preferencesManager.readShowCase()
+    }
     fun onAddEditResult(result: Int) {
         when (result) {
             ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("کار اضافه شد")
@@ -83,7 +83,7 @@ class TaskViewModel @Inject constructor(private val taskDao :TaskDAO, private  v
     sealed class TaskEvent{
         object NavigateToAddTaskScreen : TaskEvent()
         data class NavigateToEditTaskScreen(val task : Task) : TaskEvent()
-        data class showOnDeleteTaskMessage(val task: Task):TaskEvent()
+        data class ShowOnDeleteTaskMessage(val task: Task):TaskEvent()
         data class ShowTaskSavedConfirmationMessage(val msg:String) :TaskEvent()
         object NavigateToDeleteAllCompletedScreen : TaskEvent()
     }

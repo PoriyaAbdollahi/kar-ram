@@ -102,6 +102,8 @@ dependencies {
 
     //viewBinding
     implementation 'com.android.databinding:viewbinding:4.2.1'
+    //showcase
+    implementation 'com.github.mreram:showcaseview:1.2.0'
 
 }
 

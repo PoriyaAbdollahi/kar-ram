@@ -19,11 +19,17 @@
         android:padding="8dp">
 
         <EditText
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            style="@style/Widget.AppCompat.EditText"
+            android:padding="8dp"
+            android:background="@drawable/task_back_pallet_saffron_yellow"
             android:fontFamily="@font/yekan"
             android:id="@+id/edit_text_task_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+
             android:textColor="@color/white_new"
             android:textColorHint="@color/white_light"
             android:hint="عنوان کار"
@@ -37,15 +43,19 @@
         <CheckBox
             android:layout_gravity="end"
             android:gravity="center"
+            android:drawableEnd="@drawable/ic_star"
             android:text="مهم"
             android:textSize="20sp"
             android:fontFamily="@font/yekan"
             android:id="@+id/checkbox_important"
             android:layout_width="wrap_content"
             android:textColor="@color/white_new"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_star" />
         <TextView
             android:text="رنگ رو انتخاب کنید"
+            android:gravity="center"
+            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <GridLayout
